@@ -33,9 +33,7 @@ public interface TimelineChart extends Chart {
   void setTopUnit(TimeUnit topUnit);
 
   void setBottomUnit(TimeUnit bottomUnit);
-
-  // void paintChart(Graphics g);
-
+  
   void addRenderer(ChartRendererBase renderer);
 
   void resetRenderers();

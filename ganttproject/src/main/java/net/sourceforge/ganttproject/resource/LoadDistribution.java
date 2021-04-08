@@ -46,7 +46,7 @@ public class LoadDistribution {
     public final Date endDate;
   }
 
-  private final List<Load> myTasksLoads = new ArrayList<Load>();
+  private final List<Load> myTasksLoads = new ArrayList<>();
 
   public LoadDistribution(HumanResource resource) {
     ResourceAssignment[] assignments = resource.getAssignments();

@@ -26,6 +26,7 @@ import net.sourceforge.ganttproject.CustomPropertyDefinition;
 import net.sourceforge.ganttproject.ResourceDefaultColumn;
 import net.sourceforge.ganttproject.TreeUtil;
 import net.sourceforge.ganttproject.roles.Role;
+import org.apache.commons.lang3.NotImplementedException;
 
 public class ResourceNode extends ResourceTableNode {
   private static final Set<ResourceDefaultColumn> ourApplicableColumns = EnumSet.complementOf(
@@ -36,7 +37,9 @@ public class ResourceNode extends ResourceTableNode {
 
   public ResourceNode(HumanResource res) {
     super(res, ourApplicableColumns);
-    assert res != null;
+    if (res == null){
+      throw new AssertionError();
+    }
     resource = res;
   }
 
@@ -102,9 +105,16 @@ public class ResourceNode extends ResourceTableNode {
       setDefaultRole((Role) value);
       return;
     case STANDARD_RATE:
-      assert value instanceof Double : "Rate accepts numeric values";
+      if (!(value instanceof Double)){
+        throw new AssertionError("Rate accepts numeric values");
+      }
       getResource().setStandardPayRate(BigDecimal.valueOf((Double)value));
+      return;
+      default:
+        throw new NotImplementedException();
+
     }
+
   }
 
   /** @return the value of a custom field referenced by its title */

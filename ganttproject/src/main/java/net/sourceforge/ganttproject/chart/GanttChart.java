@@ -20,7 +20,6 @@ package net.sourceforge.ganttproject.chart;
 
 import net.sourceforge.ganttproject.GanttPreviousState;
 import biz.ganttproject.core.option.ColorOption;
-import biz.ganttproject.core.option.EnumerationOption;
 import biz.ganttproject.core.option.GPOptionGroup;
 
 public interface GanttChart extends TimelineChart {

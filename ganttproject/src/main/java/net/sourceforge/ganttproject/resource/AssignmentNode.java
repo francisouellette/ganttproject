@@ -27,8 +27,10 @@ import net.sourceforge.ganttproject.roles.Role;
 import net.sourceforge.ganttproject.task.ResourceAssignment;
 import net.sourceforge.ganttproject.task.Task;
 
+import static net.sourceforge.ganttproject.ResourceDefaultColumn.ROLE_IN_TASK;
+
 public class AssignmentNode extends ResourceTableNode {
-  private static final Set<ResourceDefaultColumn> ourApplicableColumns = EnumSet.of(ResourceDefaultColumn.ROLE_IN_TASK);
+  private static final Set<ResourceDefaultColumn> ourApplicableColumns = EnumSet.of(ROLE_IN_TASK);
   private final ResourceAssignment resourceAssignment;
 
   public AssignmentNode(ResourceAssignment res) {
@@ -59,6 +61,7 @@ public class AssignmentNode extends ResourceTableNode {
 
   @Override
   public void setCustomField(CustomPropertyDefinition def, Object val) {
+    // default implementation ignored
   }
 
   @Override
@@ -77,10 +80,8 @@ public class AssignmentNode extends ResourceTableNode {
 
   @Override
   public void setStandardField(ResourceDefaultColumn def, Object value) {
-    switch (def) {
-    case ROLE_IN_TASK:
+    if(def==ROLE_IN_TASK){
       setRoleForAssigment((Role) value);
-      return;
     }
   }
 }
