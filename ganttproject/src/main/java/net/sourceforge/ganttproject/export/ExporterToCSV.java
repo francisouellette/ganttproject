@@ -37,6 +37,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -70,7 +71,7 @@ public class ExporterToCSV extends ExporterBase {
 
   @Override
   public List<GPOptionGroup> getSecondaryOptions() {
-    return null;
+    return Collections.emptyList();
   }
 
   @Override

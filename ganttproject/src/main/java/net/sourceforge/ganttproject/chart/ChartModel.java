@@ -39,7 +39,6 @@ public interface ChartModel {
 
   Dimension getBounds();
 
-  // Dimension getMaxBounds();
   void setStartDate(Date startDate);
 
   /**

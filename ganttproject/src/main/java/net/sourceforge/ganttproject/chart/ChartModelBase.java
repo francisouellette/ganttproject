@@ -76,37 +76,28 @@ public abstract class ChartModelBase implements /* TimeUnitStack.Listener, */Cha
     private OffsetList myDefaultOffsets;
 
     private ScrollingSessionImpl(int startXpos) {
-      // System.err.println("start xpos=" + startXpos);
       myPrevXpos = startXpos;
       ChartModelBase.this.myScrollingSession = this;
       ChartModelBase.this.myOffsetManager.reset();
       myTopOffsets = getTopUnitOffsets();
       myBottomOffsets = getBottomUnitOffsets();
       myDefaultOffsets = getDefaultUnitOffsets();
-      // shiftOffsets(-myBottomOffsets.get(0).getOffsetPixels());
-      // System.err.println(myBottomOffsets.subList(0, 3));
     }
 
     @Override
     public void scrollTo(int xpos, int ypos) {
       int shift = xpos - myPrevXpos;
-      // System.err.println("xpos="+xpos+" shift=" + shift);
       shiftOffsets(shift);
       if (myBottomOffsets.get(0).getOffsetPixels() > 0) {
         int currentExceed = myBottomOffsets.get(0).getOffsetPixels();
         ChartModelBase.this.setStartDate(getBottomUnit().jumpLeft(getStartDate()));
         ChartModelBase.this.myOffsetManager.constructOffsets();
         shiftOffsets(-myBottomOffsets.get(1).getOffsetPixels() + currentExceed);
-        // System.err.println("one time unit to the left. start date=" +
-        // ChartModelBase.this.getStartDate());
-        // System.err.println(myBottomOffsets.subList(0, 3));
       } else if (myBottomOffsets.get(1).getOffsetPixels() <= 0) {
         ChartModelBase.this.setStartDate(myBottomOffsets.get(2).getOffsetStart());
         ChartModelBase.this.myOffsetManager.constructOffsets();
         shiftOffsets(-myBottomOffsets.get(0).getOffsetPixels());
-        // System.err.println("one time unit to the right. start date=" +
-        // ChartModelBase.this.getStartDate());
-        // System.err.println(myBottomOffsets.subList(0, 3));
+
       }
       myPrevXpos = xpos;
     }
@@ -519,21 +510,8 @@ public abstract class ChartModelBase implements /* TimeUnitStack.Listener, */Cha
     return myBounds;
   }
 
-  // @Override
-  // public Dimension getMaxBounds() {
-  // OffsetBuilderImpl offsetBuilder = new OffsetBuilderImpl(
-  // this, Integer.MAX_VALUE, getTaskManager().getProjectEnd());
-  // List<Offset> topUnitOffsets = new ArrayList<Offset>();
-  // OffsetList bottomUnitOffsets = new OffsetList();
-  // offsetBuilder.constructOffsets(topUnitOffsets, bottomUnitOffsets);
-  // int width = topUnitOffsets.get(topUnitOffsets.size()-1).getOffsetPixels();
-  // int height = calculateRowHeight()*getRowCount();
-  // return new Dimension(width, height);
-  // }
 
   public abstract int calculateRowHeight();
-
-  // protected abstract int getRowCount();
 
   @Override
   public int getBottomUnitWidth() {
@@ -568,7 +546,6 @@ public abstract class ChartModelBase implements /* TimeUnitStack.Listener, */Cha
   public Offset getOffsetAt(int x) {
     for (Offset offset : getDefaultUnitOffsets()) {
       if (offset.getOffsetPixels() >= x) {
-        // System.err.println("result=" + offset);
         return offset;
       }
     }

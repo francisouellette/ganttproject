@@ -286,11 +286,6 @@ public class HumanResource implements CustomPropertyHolder {
     return myLoadDistribution;
   }
 
-  private void fireAssignmentChanged() {
-    resetLoads();
-    fireAssignmentsChanged();
-  }
-
   public void swapAssignments(ResourceAssignment a1, ResourceAssignment a2) {
     Collections.swap(myAssignments, myAssignments.indexOf(a1), myAssignments.indexOf(a2));
     resetLoads();
@@ -375,14 +370,14 @@ public class HumanResource implements CustomPropertyHolder {
     @Override
     public void setLoad(float load) {
       myLoad = load;
-      HumanResource.this.fireAssignmentChanged();
+     this.fireAssignmentChanged();
     }
 
     /** Removes all related assignments */
     @Override
     public void delete() {
       HumanResource.this.myAssignments.remove(this);
-      HumanResource.this.fireAssignmentChanged();
+      this.fireAssignmentChanged();
     }
 
     @Override
@@ -399,6 +394,11 @@ public class HumanResource implements CustomPropertyHolder {
     public Role getRoleForAssignment() {
 
       return myRoleForAssignment;
+    }
+
+    private void fireAssignmentChanged() {
+      resetLoads();
+      fireAssignmentsChanged();
     }
 
     @Override
