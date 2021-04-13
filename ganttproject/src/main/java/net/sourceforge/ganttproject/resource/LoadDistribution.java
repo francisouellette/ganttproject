@@ -22,12 +22,12 @@ import net.sourceforge.ganttproject.task.TaskActivity;
  */
 public class LoadDistribution {
   public static class Load {
-    public float load;
+    public float taskLoad;
 
     public final Task refTask;
 
     Load(Date startDate, Date endDate, float load, Task ref) {
-      this.load = load;
+      this.taskLoad = load;
       this.refTask = ref;
       this.startDate = startDate;
       this.endDate = endDate;
@@ -35,18 +35,19 @@ public class LoadDistribution {
 
     @Override
     public String toString() {
-      return "start=" + this.startDate + " load=" + this.load + " refTask = " + this.refTask;
+      return "start=" + this.startDate + " load=" + this.taskLoad + " refTask = " + this.refTask;
     }
 
     public boolean isResourceUnavailable() {
-      return load == -1;
+      return taskLoad == -1;
     }
 
     public final Date startDate;
     public final Date endDate;
+
   }
 
-  private final List<Load> myTasksLoads = new ArrayList<Load>();
+  private final List<Load> myTasksLoads = new ArrayList<>();
 
   public LoadDistribution(HumanResource resource) {
     ResourceAssignment[] assignments = resource.getAssignments();
@@ -57,10 +58,10 @@ public class LoadDistribution {
   }
 
   private void processDaysOff(HumanResource resource) {
-    DefaultListModel daysOff = resource.getDaysOff();
+    DefaultListModel<GanttDaysOff> daysOff = resource.getDaysOff();
     if (daysOff != null) {
       for (int l = 0; l < daysOff.size(); l++) {
-        GanttDaysOff dayOff = (GanttDaysOff) daysOff.get(l);
+        GanttDaysOff dayOff = daysOff.get(l);
         Date dayOffStart = dayOff.getStart().getTime();
         Date dayOffEnd = dayOff.getFinish().getTime();
         myTasksLoads.add(new Load(dayOffStart, dayOffEnd, -1, null));
@@ -84,4 +85,5 @@ public class LoadDistribution {
   public List<Load> getTasksLoads() {
     return myTasksLoads;
   }
+
 }

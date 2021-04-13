@@ -905,8 +905,7 @@ public class GanttProject extends GanttProjectBase implements ResourceView, Gant
   }
 
   /**
-   * The main
-   */
+y   */
   public static boolean main(String[] arg) throws InvocationTargetException, InterruptedException {
     CommandLineExportApplication cmdlineApplication = new CommandLineExportApplication();
     final Args mainArgs = new Args();

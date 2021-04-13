@@ -104,7 +104,7 @@ class ResourceLoadRenderer extends ChartRendererBase {
         if (taskLoad.refTask != null) {
           taskId = taskLoad.refTask.getTaskID();
         }
-        CapacityHeatmapSceneBuilder.Load load = new CapacityHeatmapSceneBuilder.Load(taskLoad.startDate.getTime(), taskLoad.endDate.getTime(), taskLoad.load, taskId);
+        CapacityHeatmapSceneBuilder.Load load = new CapacityHeatmapSceneBuilder.Load(taskLoad.startDate.getTime(), taskLoad.endDate.getTime(), taskLoad.taskLoad, taskId);
         loads.add(load);
       }
       boolean isExpanded = myResourcechart.isExpanded(humanResource);

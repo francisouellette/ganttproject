@@ -138,6 +138,8 @@ public class GPLogger {
 
   public static void setLogFile(String logFileName) {
     try {
+      //hardcode la logfile
+      ourLogFileName = "log.txt";
       ourLogger.info(String.format("Writing log to file %s", logFileName));
       Handler fileHandler = new FileHandler(logFileName, true);
       fileHandler.setFormatter(new java.util.logging.SimpleFormatter());

@@ -20,7 +20,6 @@ package net.sourceforge.ganttproject.export;
 
 import java.io.File;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.util.List;
 
 import javax.swing.SwingUtilities;

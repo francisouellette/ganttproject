@@ -10,6 +10,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6'
+        classpath 'org.openjfx:javafx-plugin:0.0.9'
     }
 
 }
@@ -17,9 +18,15 @@ buildscript {
 
 apply plugin: 'application'
 apply plugin: 'java'
+apply plugin: 'org.openjfx.javafxplugin'
 apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
 apply plugin: "org.sonarqube"
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing' ]
+}
+
 
 ext {
     libDir = 'lib/core'

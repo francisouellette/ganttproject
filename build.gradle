@@ -9,6 +9,7 @@ ext.distBinDir = file('ganttproject-builder/dist-bin')
 ext.pluginsDir = file("ganttproject-builder/dist-bin/plugins/base")
 ext.buildNum = getBuildNum()
 
+
 version = "${semver}.${getBuildNum()}"
 
 

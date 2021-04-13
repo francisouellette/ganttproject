@@ -59,6 +59,7 @@ public class AssignmentNode extends ResourceTableNode {
 
   @Override
   public void setCustomField(CustomPropertyDefinition def, Object val) {
+    //This method is not yet implemented
   }
 
   @Override
@@ -80,6 +81,8 @@ public class AssignmentNode extends ResourceTableNode {
     switch (def) {
     case ROLE_IN_TASK:
       setRoleForAssigment((Role) value);
+      return;
+    default:
       return;
     }
   }
